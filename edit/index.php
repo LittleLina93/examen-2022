@@ -9,17 +9,22 @@ if (isset($_GET['id'])) {
     $id = +$_GET['id'];
 
     if (isset($transactions[$id])) {
-        $transaction= $transactions[$id];
+        $transaction = $transactions[$id];
     }
 }
-function isValidPosition($position, $max) {
+
+
+function isValidPosition($position, $max)
+{
     return (isset($position) && is_numeric($position) && $position >= 0 && $position < $max);
 }
 
-function isValidDate($jour, $mois, $annee) {
+function isValidDate($jour, $mois, $annee)
+{
     return checkdate($mois, $jour, $annee);
 }
-function isValidNumber($number) {
+function isValidNumber($number)
+{
     return (isset($number) && is_numeric($number) && $number > 0);
 }
 
@@ -30,15 +35,15 @@ $error_montant;
 
 if (isset($_POST['sauver'])) {
 
-    $nom = isset($_POST["nom"])?$_POST["nom"] : null;
-    $prenom = isset($_POST["prenom"])?$_POST["prenom"] : null;
-    $sexe = isset($_POST["sexe"])?$_POST["sexe"] : null;
+    $nom = isset($_POST["nom"]) ? $_POST["nom"] : null;
+    $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : null;
+    $sexe = isset($_POST["sexe"]) ? $_POST["sexe"] : null;
     $ddn = [
-        isset($_POST["jour"])?$_POST["jour"] : null,
-        isset($_POST["mois"])?$_POST["mois"] : null,
-        isset($_POST["annee"])?$_POST["annee"] : null,
+        isset($_POST["jour"]) ? $_POST["jour"] : null,
+        isset($_POST["mois"]) ? $_POST["mois"] : null,
+        isset($_POST["annee"]) ? $_POST["annee"] : null,
     ];
-    
+
     if (!isValidPosition($id, count($transactions))) {
         $error = true;
     }
@@ -60,12 +65,18 @@ if (isset($_POST['sauver'])) {
     $formattedDate = date('d/m/Y', $timestamp);
 
     $transaction = [
-        "date" => $formattedDate, 
-        "emetteur" => $emetteur, 
+        "date" => $formattedDate,
+        "emetteur" => $emetteur,
         "destinataire" =>  $destinataire,
         "montant" => $montant
     ];
 
+    $contact = [
+        "id" => $id,
+        "nom" => $nom,
+        "prenom" => $prenom,
+        "compte" => $compte
+    ];
 }
 
 require('./view.php');
