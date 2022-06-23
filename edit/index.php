@@ -13,7 +13,6 @@ if (isset($_GET['id'])) {
     }
 }
 
-
 function isValidPosition($position, $max)
 {
     return (isset($position) && is_numeric($position) && $position >= 0 && $position < $max);
@@ -28,7 +27,6 @@ function isValidNumber($number)
     return (isset($number) && is_numeric($number) && $number > 0);
 }
 
-
 $error = false;
 $error_ddn;
 $error_montant;
@@ -36,12 +34,13 @@ $error_montant;
 if (isset($_POST['sauver'])) {
 
     $contact = isset($_POST["nom"]) ? $_POST["nom"] : null;
-    $montant= isset($_POST["montant"])? +$_POST["montant"] : null;
+    $montant = isset($_POST["montant"]) ? +$_POST["montant"] : null;
     $ddn = [
         isset($_POST["jour"]) ? $_POST["jour"] : null,
         isset($_POST["mois"]) ? $_POST["mois"] : null,
         isset($_POST["annee"]) ? $_POST["annee"] : null,
     ];
+    $contact = isset($_POST["nom"]) ? $_POST["nom"] : [];
 
     if (!isValidPosition($id, count($transactions))) {
         $error = true;
@@ -52,7 +51,7 @@ if (isset($_POST['sauver'])) {
     }
     if (!isValidNumber($montant)) {
         $error = true;
-        $error_montant = "Le nombre d'enfant choisi est incorrect";
+        $error_montant = "Le montant choisi est incorrect";
     }
 
     if (!$error) {
@@ -77,5 +76,13 @@ if (isset($_POST['sauver'])) {
         "compte" => $compte
     ];
 }
+
+function redirect($url, $permanent = false) {
+    if (headers_sent() === false) {
+        header("location: $url", true, ($permanent === true ? 301 : 302));
+    }
+    exit();
+}
+
 
 require('./view.php');

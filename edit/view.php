@@ -9,16 +9,14 @@
 </head>
 
 <body>
-    <form action="" enctype="multipart/form-data" metho="POST">
+    <form action="" enctype="multipart/form-data" method="POST">
         <div>
             Liste de contacts
-            <label>
-                <select name="contact[]" id="contacts">
+                <select name="contact" id="contacts">
                     <?php foreach ($contacts as $key => $value) : ?>
                         <option name="contact[]" value="<?= $key ?>" <?= in_array($key, $contact['nom']) ? 'checked' : '' ?> <?= $value ?>></option>
                     <?php endforeach ?>
                 </select>
-            </label>
         </div>
         <div>
             <label>
@@ -47,7 +45,8 @@
                 <?php endif; ?>
             </label>
         </div>
-        <input type="submit" name="sauver" value="Sauver" />
+        <input type="submit" name="sauver" value="Sauver"/>
+        <?php redirect('../list', true) ?>
     </form>
 </body>
 
