@@ -14,12 +14,9 @@
         <p>Pas de transaction connu avec cet id</p>
     <?php else: ?>
         <ul>
-            <?php foreach ($contacts as $key => $contact): ?>
                 <li><?= ($contact['nom']) ?></li>
                 <li><?= ($contact['prenom']) ?></li>
                 <li><?= ($contact['compte']) ?></li>
-            <?php endforeach; ?>
-            <?php if ?>    
         </ul>
     <?php endif; ?>
 

@@ -11,7 +11,6 @@
 <body>
     <ul>
         <?php foreach ($transactions as $key => $transaction) : ?>
-            <!--$key va retourner la clé de l'élément du tableau qui est actuellement pointé-->
             <li>
                 <a href="../item?id=<?= $key ?>">
                     <?= $transaction['date'] ?>

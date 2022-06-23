@@ -47,7 +47,7 @@
                 <?php endif; ?>
             </label>
         </div>
-        <a href="../list"><input type="submit" name="sauver" value="Sauver" /></a>
+        <input type="submit" name="sauver" value="Sauver" />
     </form>
 </body>
 

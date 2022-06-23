@@ -35,9 +35,8 @@ $error_montant;
 
 if (isset($_POST['sauver'])) {
 
-    $nom = isset($_POST["nom"]) ? $_POST["nom"] : null;
-    $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : null;
-    $sexe = isset($_POST["sexe"]) ? $_POST["sexe"] : null;
+    $contact = isset($_POST["nom"]) ? $_POST["nom"] : null;
+    $montant= isset($_POST["montant"])? +$_POST["montant"] : null;
     $ddn = [
         isset($_POST["jour"]) ? $_POST["jour"] : null,
         isset($_POST["mois"]) ? $_POST["mois"] : null,
